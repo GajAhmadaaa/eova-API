@@ -2,7 +2,7 @@ import pandas as pd
 
 def calculate_thresholds(dataset_path):
     #set weights to global
-    global weights, treshold2
+    global weights, treshold1_max
 
     # Read dataset
     df = pd.read_csv(dataset_path)
@@ -35,12 +35,16 @@ def calculate_thresholds(dataset_path):
 
     return treshold1_max, treshold2, weights
 
+    # Predicting
 def predict(data):
     #treshold1_max, treshold2, weights = calculate_thresholds("dataset.csv")
-    data = [w * d for w, d in zip(weights, data)]
+    data_weights = [w * d for w, d in zip(weights, data)]
 
     # Predicting
-    if sum(data) - treshold2 > 0:
-        return "GANAS"
+    if sum(data_weights) - treshold1_max > 0:
+      if data[0] == 1:
+        return int(3), data_weights[0] * 100, sum(data_weights[1:] * 100)
+      else:
+        return int(3), sum(data_weights) * 100
     else:
-        return "JINAK"
+        return int(2), sum(data_weights) * 100
