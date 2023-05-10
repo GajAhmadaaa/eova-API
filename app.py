@@ -20,9 +20,9 @@ def predicts():
         input_data = data["input"]
 
         # Make prediction
-        output = predict(input_data)
+        prediction, percentage1, percentage2 = predict(input_data)
 
-        return {"predict": output}
+        return {"predict": prediction, "percentage1": percentage1, "percentage2": percentage2}
     else:
         return {"error": "Only POST requests are allowed"}, 405
 
