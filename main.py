@@ -43,8 +43,8 @@ def predict(data):
     # Predicting
     if sum(data_weights) - treshold1_max > 0:
       if data[0] == 1:
-        return int(3), data_weights[0] * 100, sum(data_weights[1:] * 100)
+        return int(3), float(f'{sum(data_weights[1:] * 100):.2f}'), float(f'{data_weights[0] * 100:.2f}')
       else:
-        return int(3), sum(data_weights) * 100
+        return int(3), float(f'{sum(data_weights):.2f}') * 100, int(0)
     else:
-        return int(2), sum(data_weights) * 100
+        return int(2), float(f'{sum(data_weights):.2f}') * 100, int(0)
