@@ -35,6 +35,9 @@ def calculate_thresholds(dataset_path):
 
     return treshold1_max, treshold2, weights
 
+def limit(score):
+   return float(f'{score:.2f}')
+
     # Predicting
 def predict(data):
     #treshold1_max, treshold2, weights = calculate_thresholds("dataset.csv")
@@ -43,8 +46,8 @@ def predict(data):
     # Predicting
     if sum(data_weights) - treshold1_max > 0:
       if data[0] == 1:
-        return int(3), float(f'{sum(data_weights[1:] * 100):.2f}'), float(f'{data_weights[0] * 100:.2f}')
+        return int(3), limit(sum(data_weights[1:]) * 100), limit(data_weights[0] * 100)
       else:
-        return int(3), float(f'{sum(data_weights):.2f}') * 100, int(0)
+        return int(3), limit(sum(data_weights) * 100), limit(0)
     else:
-        return int(2), float(f'{sum(data_weights):.2f}') * 100, int(0)
+        return int(2), limit(sum(data_weights) * 100), limit(0)
