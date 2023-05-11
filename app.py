@@ -27,10 +27,9 @@ def predicts():
         return {"error": "Only POST requests are allowed"}, 405
 
 if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
-    '''# Use environment variable to specify the port number
+    # Use environment variable to specify the port number
     port = int(os.environ.get('PORT', 5000))
     # Use environment variable to specify whether to run in production mode
     is_production = os.environ.get('FLASK_ENV') == 'production'
     # Start the application
-    app.run(host='0.0.0.0', port=port, debug=False)'''
+    app.run(host='0.0.0.0', port=port, debug=False)
